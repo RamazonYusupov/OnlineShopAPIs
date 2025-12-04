@@ -25,8 +25,7 @@ export const createCategory = async (req, res) => {
   try {
     const { name, image } = req.body;
     const result = await pool.query(
-      `INSERT INTO categories (name, image)
-        VALUES ($1, $2) returning *`,
+      `INSERT INTO categories (name, image) VALUES ($1, $2) returning *`,
       [name, image]
     );
     res
@@ -46,12 +45,10 @@ export const updateCategory = async (req, res) => {
       res.status(400).json({ message: "All the fields must be provided" });
     }
     const result = await pool.query(
-      `
-      UPDATE categories SET
-      name = $1,
-      image = $2
-      WHERE id = $3 returning *
-      `,
+      `UPDATE categories SET
+       name = $1,
+       image = $2
+       WHERE id = $3 returning *`,
       [name, image, id]
     );
     res

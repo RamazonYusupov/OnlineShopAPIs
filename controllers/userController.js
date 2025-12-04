@@ -24,7 +24,7 @@ export const createNewUser = async (req, res) => {
     const { email, password, name, role, avatar } = req.body;
     const result = await pool.query(
       `INSERT INTO users (email, password, name, role, avatar)
-        VALUES ($1, $2, $3, $4, $5) returning *`,
+       VALUES ($1, $2, $3, $4, $5) returning *`,
       [email, password, name, role, avatar]
     );
     res
@@ -44,15 +44,13 @@ export const updateUser = async (req, res) => {
       res.status(400).json({ message: "All the fields must be provided" });
     }
     const result = await pool.query(
-      `
-      UPDATE users SET
-      email = $1,
-      password = $2,
-      name = $3,
-      role = $4,
-      avatar = $5
-      WHERE id = $6 RETURNING *
-      `,
+      `UPDATE users SET
+       email = $1,
+       password = $2,
+       name = $3,
+       role = $4,
+       avatar = $5
+       WHERE id = $6 RETURNING *`,
       [email, password, name, role, avatar, id]
     );
     res

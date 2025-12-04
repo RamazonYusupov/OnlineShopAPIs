@@ -45,12 +45,12 @@ export const updateProduct = async (req, res) => {
     }
     const result = await pool.query(
       `UPDATE products SET
-        title = $1,
-        price = $2,
-        description = $3,
-        image = $4,
-        categoryId = $5
-        WHERE id = $6 returning *`,
+       title = $1,
+       price = $2,
+       description = $3,
+       image = $4,
+       categoryId = $5
+       WHERE id = $6 RETURNING *`,
       [title, price, description, image, categoryId, id]
     );
     res
