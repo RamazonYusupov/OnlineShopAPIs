@@ -1,6 +1,6 @@
 import { Pool } from "pg";
 
-//Connection to PG Database
+// Connection to PG Database
 const pool = new Pool({
   host: "localhost",
   port: 5432,
@@ -12,10 +12,10 @@ const pool = new Pool({
 pool
   .connect()
   .then(() => {
-    console.log("Ma'lumotlar omboriga ulandik");
+    console.log("Connected to the Database");
   })
   .catch((err) => {
-    console.log("Ma'lumotlar omboriga ulanishda muammo yuz berdi");
+    console.log("Database connection error");
     console.log(err);
   });
 
