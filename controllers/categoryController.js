@@ -25,7 +25,7 @@ export const createCategory = async (req, res) => {
   try {
     const { name, image } = req.body;
     const result = await pool.query(
-      `INSERT INTO categories (name, image) VALUES ($1, $2) returning *`,
+      `INSERT INTO categories (name, image) VALUES ($1, $2) RETURNING *`,
       [name, image]
     );
     res
@@ -48,7 +48,7 @@ export const updateCategory = async (req, res) => {
       `UPDATE categories SET
        name = $1,
        image = $2
-       WHERE id = $3 returning *`,
+       WHERE id = $3 RETURNING *`,
       [name, image, id]
     );
     res
